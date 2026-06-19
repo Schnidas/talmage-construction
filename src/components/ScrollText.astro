@@ -1,0 +1,29 @@
+---
+// Splits text into per-word spans for the two-tone scroll-fill effect.
+// Words listed in `accent` light up in clay instead of ink.
+interface Props {
+  text: string;
+  accent?: string[];
+  as?: 'h2' | 'h3' | 'p' | 'div';
+  class?: string;
+}
+const { text, accent = [], as: Tag = 'p', class: className = '' } = Astro.props;
+const accentSet = new Set(accent.map((w) => w.toLowerCase().replace(/[.,!?—]/g, '')));
+const tokens = text.split(/(\s+)/); // keep whitespace tokens
+---
+
+<Tag class:list={['scrollfill', className]}>
+  {
+    tokens.map((tok) =>
+      /^\s+$/.test(tok) ? (
+        tok
+      ) : (
+        <span
+          class:list={[
+            'word',
+            accentSet.has(tok.toLowerCase().replace(/[.,!?—]/g, '')) && 'accent',
+          ]}>{tok}</span>
+      ),
+    )
+  }
+</Tag>

@@ -1,0 +1,182 @@
+---
+import { testimonials } from '../data/site';
+---
+
+<section class="reviews container-x" id="reviews">
+  <header class="head">
+    <p class="eyebrow" data-reveal>Reviews</p>
+    <h2 class="display-md" data-reveal data-reveal-delay="0.05">
+      Reviews
+    </h2>
+  </header>
+
+  <div class="carousel" data-reveal>
+    <div class="quotemark" aria-hidden="true">&rdquo;</div>
+
+    <div class="viewport">
+      {
+        testimonials.map((t, i) => (
+          <figure class="slide" data-slide data-index={i} hidden={i !== 0}>
+            <blockquote>{t.quote}</blockquote>
+            <figcaption>
+              <span class="stars" aria-label={`${t.stars} out of 5 stars`}>
+                {'★'.repeat(t.stars)}
+              </span>
+              <cite>{t.name}</cite>
+              <span class="src">Google review</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="controls">
+      <div class="dots" role="tablist" aria-label="Choose a review">
+        {
+          testimonials.map((_, i) => (
+            <button class="dot" data-dot data-index={i} role="tab" aria-selected={i === 0} aria-label={`Review ${i + 1}`}>
+              {i + 1}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    padding-block: clamp(5rem, 12vh, 9rem);
+  }
+  .head {
+    margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  }
+  .head .eyebrow {
+    color: var(--color-clay);
+    margin-bottom: 1rem;
+  }
+  .accent {
+    color: var(--color-clay);
+  }
+  .carousel {
+    position: relative;
+    border-top: 1px solid var(--color-line);
+    padding-top: clamp(2rem, 5vh, 3.5rem);
+  }
+  .quotemark {
+    position: absolute;
+    top: -0.4em;
+    right: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(6rem, 14vw, 12rem);
+    line-height: 1;
+    color: var(--color-clay);
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .viewport {
+    min-height: 12rem;
+    max-width: 52rem;
+  }
+  .slide blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+  .slide[hidden] {
+    display: none;
+  }
+  .slide:not([hidden]) {
+    animation: fade 0.5s var(--ease-out-soft);
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
+  figcaption {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .stars {
+    color: var(--color-clay);
+    letter-spacing: 2px;
+  }
+  cite {
+    font-style: normal;
+    font-weight: 700;
+  }
+  .src {
+    color: var(--color-ink-soft);
+    font-size: 0.9rem;
+  }
+  .controls {
+    margin-top: clamp(2rem, 5vh, 3rem);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .dots {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .dot {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-ink-soft);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .dot[aria-selected='true'] {
+    background: var(--color-ink);
+    color: var(--color-bone);
+    border-color: var(--color-ink);
+  }
+  .dot:hover {
+    border-color: var(--color-clay);
+    color: var(--color-clay);
+  }
+  .dot[aria-selected='true']:hover {
+    color: var(--color-bone);
+  }
+</style>
+
+<script>
+  const root = document.querySelector('.carousel');
+  if (root) {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const dots = [...root.querySelectorAll<HTMLElement>('[data-dot]')];
+    let current = 0;
+    let timer: number | undefined;
+
+    const show = (n: number) => {
+      current = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => (s.hidden = i !== current));
+      dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === current)));
+    };
+    const next = () => show(current + 1);
+
+    const reset = () => {
+      window.clearInterval(timer);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = window.setInterval(next, 6500);
+      }
+    };
+
+    dots.forEach((d) => d.addEventListener('click', () => { show(Number(d.dataset.index)); reset(); }));
+    reset();
+  }
+</script>

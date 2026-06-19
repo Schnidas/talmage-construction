@@ -1,0 +1,93 @@
+.about {
+  background: var(--paper);
+}
+
+.inner {
+  display: grid;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+  align-items: center;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--sand);
+  box-shadow: var(--shadow-lg);
+}
+.image {
+  object-fit: cover;
+}
+
+.body {
+  max-width: 46ch;
+}
+.title {
+  margin-top: 1.1rem;
+}
+.lead {
+  margin-top: 1.6rem;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--ink);
+}
+.text {
+  margin-top: 1.2rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+@media (max-width: 47.99rem) {
+  .text {
+    display: none;
+  }
+}
+.signature {
+  margin-top: 1.8rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+/* ---- Stats strip ---- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: clamp(3.5rem, 2rem + 5vw, 6rem);
+  border-top: 1px solid var(--line);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: clamp(1.5rem, 1rem + 1.5vw, 2.4rem);
+  padding-right: 1rem;
+}
+.stat + .stat {
+  padding-left: clamp(1rem, 0.4rem + 2vw, 2.4rem);
+  border-left: 1px solid var(--line);
+}
+.statNum {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 1.6rem + 3vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+@media (min-width: 60rem) {
+  .inner {
+    grid-template-columns: 0.85fr 1fr;
+  }
+  .media {
+    aspect-ratio: 4 / 5;
+  }
+}

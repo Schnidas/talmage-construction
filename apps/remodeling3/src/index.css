@@ -1,0 +1,61 @@
+/* Google Fonts load via <link> in index.html (parallel, non-blocking). */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Outfit", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-accent-gold: #c5a880; /* Elegant light-antique gold */
+  --color-accent-amber: #b87333; /* Rich warm copper/amber */
+  --color-accent-charcoal: #1E2229; /* Dark stone slate */
+  --color-accent-warm: #FAF9F6; /* Alabaster warm linen */
+  --color-accent-stone: #EFECE6; /* Slightly darker linen shade */
+  --color-accent-cream: #FCFAF7; /* Warm white cream */
+}
+
+@media (max-width: 1023px) {
+  #app-header { padding-top: calc(env(safe-area-inset-top) + 1rem); }
+}
+
+/* Custom baseline styling to guarantee architectural elegance */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-accent-warm);
+  color: var(--color-accent-charcoal);
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-accent-gold);
+  color: #12151c;
+}
+
+/* Scrollbar adjustment for high-end look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-accent-warm);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-amber);
+}
+
+/* Utility to override motion animations conditionally */
+.no-motion * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Interactive sliding custom clip */
+.before-after-clip {
+  clip-path: rect(0px 100% 100% 0px);
+}

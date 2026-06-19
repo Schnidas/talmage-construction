@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1500" viewBox="0 0 2400 1500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A remodeled home glowing warmly at dusk">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1f24"/>
+      <stop offset="0.45" stop-color="#262328"/>
+      <stop offset="0.78" stop-color="#3a302b"/>
+      <stop offset="1" stop-color="#2a221d"/>
+    </linearGradient>
+    <radialGradient id="moonglow" cx="0.72" cy="0.22" r="0.5">
+      <stop offset="0" stop-color="#5a5552" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#5a5552" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="window" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd9a0"/>
+      <stop offset="1" stop-color="#e89a52"/>
+    </linearGradient>
+    <radialGradient id="porch" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#ffcf94" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffcf94" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.42" r="0.75">
+      <stop offset="0" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="0.7" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.62"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="bloom" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+    </filter>
+  </defs>
+
+  <!-- Sky + atmosphere -->
+  <rect width="2400" height="1500" fill="url(#sky)"/>
+  <rect width="2400" height="1500" fill="url(#moonglow)"/>
+  <ellipse cx="600" cy="540" rx="900" ry="180" fill="#2f3a3f" opacity="0.25" filter="url(#soft)"/>
+  <ellipse cx="1800" cy="640" rx="800" ry="150" fill="#3a322c" opacity="0.3" filter="url(#soft)"/>
+
+  <!-- Distant tree line -->
+  <path d="M0 690 Q 180 600 360 660 T 720 640 Q 900 590 1080 650 T 1440 630 Q 1640 580 1820 650 T 2400 640 L2400 820 L0 820 Z"
+        fill="#171a1c" opacity="0.85"/>
+
+  <!-- Ground / lawn -->
+  <rect x="0" y="760" width="2400" height="740" fill="#100d0b"/>
+  <rect x="0" y="760" width="2400" height="740" fill="#1a1512" opacity="0.5"/>
+
+  <!-- House -->
+  <g>
+    <!-- Porch glow behind entry -->
+    <ellipse cx="1620" cy="980" rx="520" ry="340" fill="url(#porch)" opacity="0.5" filter="url(#bloom)"/>
+
+    <!-- Main body -->
+    <rect x="380" y="820" width="1680" height="470" fill="#161311"/>
+    <!-- Roof -->
+    <path d="M340 824 L900 660 L1500 660 L1980 824 Z" fill="#0f0d0c"/>
+    <path d="M1500 660 L1720 600 L2080 824 L1980 824 Z" fill="#0c0a09"/>
+    <!-- Gable over entry -->
+    <path d="M1470 860 L1640 720 L1810 860 Z" fill="#1b1714"/>
+
+    <!-- Glowing windows (left living room) -->
+    <g filter="url(#soft)">
+      <rect x="470" y="900" width="120" height="230" fill="url(#window)"/>
+      <rect x="610" y="900" width="120" height="230" fill="url(#window)"/>
+      <rect x="750" y="900" width="120" height="230" fill="url(#window)"/>
+      <rect x="890" y="900" width="120" height="230" fill="url(#window)"/>
+    </g>
+    <!-- mullions -->
+    <g fill="#221a13" opacity="0.9">
+      <rect x="585" y="900" width="10" height="230"/>
+      <rect x="725" y="900" width="10" height="230"/>
+      <rect x="865" y="900" width="10" height="230"/>
+      <rect x="470" y="1005" width="540" height="9"/>
+    </g>
+
+    <!-- Entry doors (warm) -->
+    <g filter="url(#soft)">
+      <rect x="1560" y="930" width="170" height="300" fill="url(#window)"/>
+    </g>
+    <rect x="1643" y="930" width="8" height="300" fill="#2a1f15" opacity="0.8"/>
+
+    <!-- Right windows -->
+    <g filter="url(#soft)">
+      <rect x="1820" y="940" width="110" height="190" fill="url(#window)" opacity="0.92"/>
+    </g>
+
+    <!-- Porch light points -->
+    <circle cx="1535" cy="950" r="7" fill="#ffe6bf"/>
+    <circle cx="1755" cy="950" r="7" fill="#ffe6bf"/>
+    <circle cx="1535" cy="950" r="26" fill="#ffcf94" opacity="0.5" filter="url(#soft)"/>
+    <circle cx="1755" cy="950" r="26" fill="#ffcf94" opacity="0.5" filter="url(#soft)"/>
+
+    <!-- Warm spill on lawn -->
+    <ellipse cx="740" cy="1240" rx="430" ry="70" fill="#e3a35e" opacity="0.16" filter="url(#soft)"/>
+    <ellipse cx="1640" cy="1270" rx="360" ry="64" fill="#e3a35e" opacity="0.18" filter="url(#soft)"/>
+  </g>
+
+  <!-- Foreground hedge silhouette -->
+  <path d="M0 1300 Q 300 1250 600 1290 T 1200 1280 Q 1500 1240 1800 1290 T 2400 1280 L2400 1500 L0 1500 Z" fill="#0a0807"/>
+
+  <!-- Vignette + grain for cinematic finish -->
+  <rect width="2400" height="1500" fill="url(#vignette)"/>
+  <rect width="2400" height="1500" filter="url(#grain)" opacity="0.6"/>
+</svg>

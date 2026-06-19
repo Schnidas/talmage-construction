@@ -1,0 +1,195 @@
+---
+import { projects } from '../data/site';
+const [featured, ...rest] = projects;
+---
+
+<section class="work" id="work">
+  <div class="container-x">
+    <header class="head">
+      <p class="eyebrow" data-reveal>Our Work</p>
+      <h2 class="display-md" data-reveal data-reveal-delay="0.05">
+        Drag to see the<br /><span class="accent">difference.</span>
+      </h2>
+      <p class="sub" data-reveal data-reveal-delay="0.1">
+        Real Talmage Construction projects. Slide the handle, or just scroll, to reveal the after.
+      </p>
+    </header>
+
+    <!-- Featured interactive before/after -->
+    <figure class="ba featured" data-ba data-reveal>
+      <img class="ba-before ba-photo" src={featured.before} alt={`${featured.title}, before`} loading="lazy" />
+      <div class="ba-after">
+        <img class="ba-photo" src={featured.after} alt={`${featured.title}, after`} loading="lazy" />
+      </div>
+      <span class="tag before-tag">Before</span>
+      <span class="tag after-tag">After</span>
+      <button class="ba-handle" type="button" aria-label="Drag to compare before and after" tabindex="0">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l-5 6 5 6M15 6l5 6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <figcaption>{featured.title}</figcaption>
+    </figure>
+
+    <!-- Secondary projects -->
+    <div class="grid">
+      {
+        rest.map((p) => (
+          <figure class="ba" data-ba data-reveal>
+            <img class="ba-before ba-photo" src={p.before} alt={`${p.title}, before`} loading="lazy" />
+            <div class="ba-after">
+              <img class="ba-photo" src={p.after} alt={`${p.title}, after`} loading="lazy" />
+            </div>
+            <span class="tag before-tag">Before</span>
+            <span class="tag after-tag">After</span>
+            <button class="ba-handle" type="button" aria-label={`Compare ${p.title}`} tabindex="0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l-5 6 5 6M15 6l5 6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <figcaption>{p.title}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .work {
+    padding-block: clamp(5rem, 12vh, 9rem);
+    background: var(--color-bone-200);
+    border-block: 1px solid var(--color-line);
+  }
+  .head {
+    max-width: 44rem;
+    margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  }
+  .head .eyebrow {
+    color: var(--color-clay);
+    margin-bottom: 1rem;
+  }
+  .accent {
+    color: var(--color-clay);
+  }
+  .sub {
+    margin-top: 1.25rem;
+    color: var(--color-ink-soft);
+    max-width: 32rem;
+  }
+
+  .ba {
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    user-select: none;
+    box-shadow: 0 30px 60px -40px rgb(var(--shadow-rgb) /0.6);
+    background: var(--color-bone);
+  }
+  .ba.featured {
+    aspect-ratio: 16 / 9;
+  }
+  .ba img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  .ba-before {
+    position: absolute;
+    inset: 0;
+  }
+  .ba-after {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 50% 0 0);
+    will-change: clip-path;
+  }
+  .tag {
+    position: absolute;
+    top: 0.75rem;
+    z-index: 3;
+    padding: 0.22rem 0.6rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+  }
+  .before-tag {
+    right: 1rem;
+    background: color-mix(in srgb, var(--color-ink) 70%, transparent);
+    color: var(--color-bone);
+  }
+  .after-tag {
+    left: 1rem;
+    background: color-mix(in srgb, var(--color-clay) 80%, transparent);
+    color: var(--color-bone);
+  }
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: 4;
+    width: 44px;
+    transform: translateX(-50%);
+    border: none;
+    background: transparent;
+    cursor: ew-resize;
+    display: grid;
+    place-items: center;
+    touch-action: none;
+  }
+  .ba-handle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: var(--color-bone);
+    box-shadow: 0 0 0 1px rgb(var(--shadow-rgb) /0.15);
+  }
+  .ba-handle svg {
+    position: relative;
+    z-index: 1;
+    width: 1.4rem;
+    height: 1.4rem;
+    color: var(--color-ink);
+    background: var(--color-bone);
+    border-radius: var(--radius-pill);
+    padding: 0.55rem;
+    box-shadow: 0 6px 16px -6px rgb(var(--shadow-rgb) /0.6);
+  }
+  figcaption {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 3;
+    padding: 0.28rem 0.65rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--color-bone) 88%, transparent);
+    backdrop-filter: blur(6px);
+    font-weight: 600;
+    font-size: 0.72rem;
+  }
+  .grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .grid .ba {
+    aspect-ratio: 4 / 3;
+  }
+  @media (min-width: 760px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,295 @@
+---
+import { nav, contact, business } from '../data/site';
+---
+
+<header class="site-header" data-header>
+  <div class="container-x bar">
+    <a class="brand" href="#top" aria-label={`${business.name} home`}>
+      <span class="brand-mark">T</span>
+      <span class="brand-word">Talmage Construction</span>
+    </a>
+
+    <nav class="links" aria-label="Primary">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="actions">
+      <a class="phone" href={contact.phoneHref}>{contact.phone}</a>
+      <a class="cta" href="#contact">Free Estimate</a>
+    </div>
+
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-panel" id="mobile-nav" data-mobile-panel aria-hidden="true">
+    <div class="mobile-panel-clip">
+      <div class="mobile-panel-inner">
+        {nav.map((item) => <a href={item.href} data-mobile-link>{item.label}</a>)}
+        <a class="cta" href="#contact" data-mobile-link>Free Estimate</a>
+        <a class="phone" href={contact.phoneHref}>{contact.phone}</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    padding-top: env(safe-area-inset-top);
+    transition: background 0.4s var(--ease-out-soft), backdrop-filter 0.4s;
+  }
+  .site-header.is-scrolled {
+    background: color-mix(in srgb, var(--color-bone) 82%, transparent);
+    backdrop-filter: blur(12px) saturate(1.1);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .bar {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    /* Full-bleed header: logo aligns to the same left gutter as the hero title
+       (overrides container-x centering) so they share one left edge. */
+    max-width: none;
+    margin-inline: 0;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    margin-right: auto;
+  }
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-char);
+    color: var(--color-clay);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .brand-word {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.05rem, 0.9rem + 0.55vw, 1.3rem);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+  .links {
+    display: none;
+    gap: 1.75rem;
+  }
+  .links a {
+    text-decoration: none;
+    color: var(--color-ink-soft);
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.25s;
+  }
+  .links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: var(--color-clay);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s var(--ease-out-soft);
+  }
+  .links a:hover {
+    color: var(--color-ink);
+  }
+  .links a:hover::after {
+    transform: scaleX(1);
+  }
+  .actions {
+    display: none;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .phone {
+    text-decoration: none;
+    color: var(--color-ink);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .cta {
+    text-decoration: none;
+    background: var(--color-ink);
+    color: var(--color-bone);
+    padding: 0.7rem 1.3rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .cta:hover {
+    background: var(--color-clay);
+    transform: translateY(-1px);
+  }
+
+  /* Light treatment while the header sits over the dark hero image (top of page) */
+  .site-header:not(.is-scrolled) .brand,
+  .site-header:not(.is-scrolled) .brand-word {
+    color: var(--color-bone);
+  }
+  .site-header:not(.is-scrolled) .links a {
+    color: color-mix(in srgb, var(--color-bone) 82%, transparent);
+  }
+  .site-header:not(.is-scrolled) .links a:hover {
+    color: var(--color-bone);
+  }
+  .site-header:not(.is-scrolled) .phone {
+    color: var(--color-bone);
+  }
+  .site-header:not(.is-scrolled) .cta {
+    background: var(--color-bone);
+    color: var(--color-ink);
+  }
+  .site-header:not(.is-scrolled) .cta:hover {
+    background: var(--color-clay);
+    color: var(--color-bone);
+  }
+  .site-header:not(.is-scrolled) .menu-toggle {
+    border-color: color-mix(in srgb, var(--color-bone) 45%, transparent);
+    background: color-mix(in srgb, var(--color-char) 28%, transparent);
+  }
+  .site-header:not(.is-scrolled) .menu-toggle span {
+    background: var(--color-bone);
+  }
+
+  /* Mobile menu */
+  .menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--color-bone) 70%, transparent);
+    cursor: pointer;
+    padding: 0 0.7rem;
+    transition: background 0.35s var(--ease-out-soft), border-color 0.35s var(--ease-out-soft);
+  }
+  .menu-toggle span {
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-ink);
+    transform-origin: center;
+    transition: transform 0.45s var(--ease-out-soft), background 0.35s var(--ease-out-soft);
+  }
+  .site-header.menu-open .menu-toggle span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+  .site-header.menu-open .menu-toggle span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+  /* Smooth expand: animate grid row height (0fr -> 1fr) so the panel
+     unfolds instead of snapping; inner wrapper fades + lifts in. */
+  .mobile-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    background: var(--color-bone);
+    transition: grid-template-rows 0.45s var(--ease-out-soft);
+  }
+  .site-header.menu-open .mobile-panel {
+    grid-template-rows: 1fr;
+  }
+  /* Clip wrapper carries NO padding/border so the 0fr row collapses to a true
+     0 (padding on the collapsing element leaves a residual cream band). */
+  .mobile-panel-clip {
+    overflow: hidden;
+    min-height: 0;
+  }
+  .mobile-panel-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem var(--gutter) 1.75rem;
+    border-bottom: 1px solid var(--color-line);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.4s var(--ease-out-soft),
+      transform 0.45s var(--ease-out-soft), visibility 0.45s;
+  }
+  .site-header.menu-open .mobile-panel-inner {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mobile-panel-inner a {
+    text-decoration: none;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.75rem;
+    padding: 0.5rem 0;
+  }
+  .mobile-panel-inner .cta {
+    align-self: flex-start;
+    margin-top: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+  .mobile-panel-inner .phone {
+    font-family: var(--font-body);
+    margin-top: 0.5rem;
+  }
+  /* The panel always sits on a bone background, so its button + phone keep
+     fixed colors regardless of the header's over-hero light treatment.
+     (Placed after the :not(.is-scrolled) rules to win the specificity tie.) */
+  .site-header .mobile-panel-inner .cta {
+    background: var(--color-ink);
+    color: var(--color-bone);
+  }
+  .site-header .mobile-panel-inner .cta:hover {
+    background: var(--color-clay);
+    color: var(--color-bone);
+  }
+  .site-header .mobile-panel-inner .phone {
+    color: var(--color-clay);
+  }
+
+  @media (min-width: 960px) {
+    .links,
+    .actions {
+      display: flex;
+    }
+    .menu-toggle,
+    .mobile-panel {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-mobile-panel]');
+  const setOpen = (open: boolean) => {
+    header?.classList.toggle('menu-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    panel?.setAttribute('aria-hidden', String(!open));
+  };
+  toggle?.addEventListener('click', () => {
+    setOpen(!header?.classList.contains('menu-open'));
+  });
+  document.querySelectorAll('[data-mobile-link]').forEach((l) =>
+    l.addEventListener('click', () => setOpen(false)),
+  );
+</script>

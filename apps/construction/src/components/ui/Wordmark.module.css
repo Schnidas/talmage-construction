@@ -1,0 +1,15 @@
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.amp {
+  font-style: italic;
+  font-weight: 400;
+  /* the oversized ligature is the brand signature */
+  font-size: 1.12em;
+  padding-inline: 0.02em;
+}

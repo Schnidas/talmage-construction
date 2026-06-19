@@ -1,0 +1,203 @@
+/* ============================================================================
+   Talmage Construction — VARIANT THEMES
+   Each variant is the same site re-skinned purely through design tokens.
+   Selector `html[data-theme="x"]` (specificity 0,1,2) overrides the `:root`
+   tokens from global.css (`@theme` → 0,1,0), so every Tailwind utility and
+   component style re-themes with zero markup duplication.
+
+   TOPIC 1 — COLOR  : same Craftsman Editorial language (Clash + Satoshi,
+                      same shape language) recoloured. Accent + temperature
+                      change; type and radii stay.
+   TOPIC 2 — SYSTEMS: full design-token systems. Fonts, corner radius, shadow
+                      character and palette all change — a different design.
+
+   Every text/surface pair below was verified at WCAG AA (>=4.5:1) before ship.
+   The base page (`/`, no data-theme) is untouched.
+   ========================================================================== */
+
+/* Decorative illustrations (hero, service tiles) are art-directed into a
+   per-theme duotone so the warm SVG placeholders harmonise with any palette.
+   Documentary project photos (the Before/After comparators, class .ba-photo)
+   are deliberately EXCLUDED — finish, tile and paint colour is the thing the
+   "Drag to see the difference" section exists to sell, so they show true
+   colour on every variant. The base page (no data-theme) keeps full colour. */
+html[data-theme] img:not(.ba-photo) {
+  filter: var(--img-filter, none);
+}
+/* The hero house carries its own drop-shadow, which would otherwise win the
+   `filter` cascade and exclude it from the duotone (leaving its baked-in base
+   terracotta on every variant). Fold the shadow back in so it re-tints too. */
+html[data-theme] img.house {
+  filter: var(--img-filter, none) drop-shadow(0 30px 60px rgb(var(--shadow-rgb) / 0.18));
+}
+/* Black & White is monochrome end to end, so its project photos go grey too. */
+html[data-theme='mono'] img.ba-photo {
+  filter: grayscale(1) contrast(1.03);
+}
+
+/* ========================================================================== */
+/* TOPIC 1 · COLOUR VARIANTS                                                   */
+/* ========================================================================== */
+
+/* — Evergreen — Pacific-Northwest forest: warm plaster, deep evergreen accent */
+html[data-theme='evergreen'] {
+  --color-bone: #f1efe7;
+  --color-bone-200: #e7e5da;
+  --color-ink: #15170f;
+  --color-ink-soft: #434a3c;
+  --color-stone: #a9b09e;
+  --color-clay: #2f6a43;
+  --color-clay-deep: #244f33;
+  --color-clay-on-dark: #82b08e;
+  --color-char: #14160e;
+  --color-char-700: #222619;
+  --color-line: #d6d8c9;
+  --img-filter: grayscale(1) sepia(0.35) hue-rotate(75deg) saturate(0.55) brightness(1.02);
+}
+
+/* — Indigo & Brass — blue-hour slate ink with a warm antique-brass accent */
+html[data-theme='indigo'] {
+  --color-bone: #eceef2;
+  --color-bone-200: #e0e4ea;
+  --color-ink: #161a22;
+  --color-ink-soft: #404757;
+  --color-stone: #a7afbd;
+  --color-clay: #8a5e16;
+  --color-clay-deep: #6f4b10;
+  --color-clay-on-dark: #e0b85f;
+  --color-char: #14171e;
+  --color-char-700: #20242e;
+  --color-line: #d2d6de;
+  --img-filter: grayscale(1) sepia(0.4) hue-rotate(175deg) saturate(0.5);
+}
+
+/* — Oxblood & Ecru — heritage wine accent on a creamier paper */
+html[data-theme='oxblood'] {
+  --color-bone: #f3ece2;
+  --color-bone-200: #ebe1d3;
+  --color-ink: #1e1512;
+  --color-ink-soft: #4e3f37;
+  --color-stone: #bfa996;
+  --color-clay: #8c2f39;
+  --color-clay-deep: #74252e;
+  --color-clay-on-dark: #cf7783;
+  --color-char: #1a1311;
+  --color-char-700: #281d19;
+  --color-line: #e0d3c2;
+  --img-filter: grayscale(1) sepia(0.4) hue-rotate(-12deg) saturate(0.7);
+}
+
+/* — Mono — crisp editorial black & white (near-black / near-white, not pure) */
+html[data-theme='mono'] {
+  --color-bone: #f6f6f5;
+  --color-bone-200: #ececeb;
+  --color-ink: #0d0d0d;
+  --color-ink-soft: #3d3d3d;
+  --color-stone: #b9b9b8;
+  --color-clay: #141414;
+  --color-clay-deep: #0a0a0a; /* off-black, never pure #000 */
+  --color-clay-on-dark: #ededed;
+  --color-char: #111111;
+  --color-char-700: #1d1d1d;
+  --color-line: #dcdcdb;
+  --shadow-rgb: 10 10 10;
+  /* The near-black accent would make the clay focus ring vanish on dark
+     controls, so mono uses a mid-grey ring that reads on both ink and bone. */
+  --color-focus: #6b6b6b;
+  --img-filter: grayscale(1) contrast(1.05);
+}
+
+/* ========================================================================== */
+/* TOPIC 2 · DESIGN-TOKEN SYSTEMS                                              */
+/* ========================================================================== */
+
+/* — Swiss — International Typographic Style: Switzer grotesque, hard corners,
+     near-neutral field, one hot signal red. Flat, objective, gridded.        */
+html[data-theme='swiss'] {
+  --color-bone: #f4f4f2;
+  --color-bone-200: #e9e9e6;
+  --color-ink: #111110;
+  --color-ink-soft: #44443f;
+  --color-stone: #b3b3ad;
+  --color-clay: #c11f14;
+  --color-clay-deep: #a8160d;
+  --color-clay-on-dark: #f06a5f;
+  --color-char: #111110;
+  --color-char-700: #1e1e1c;
+  --color-line: #dededb;
+
+  --font-display: 'Switzer', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Switzer', ui-sans-serif, system-ui, sans-serif;
+  --radius-pill: 0px;
+  --radius-card: 0px;
+  --radius-sm: 0px;
+  /* Swiss is flat by doctrine: tint the shadow colour to the surface so the
+     soft drop-shadows on cards / form / figures blend away to nothing. */
+  --shadow-rgb: 244 244 242;
+  --img-filter: grayscale(1) contrast(1.08);
+}
+html[data-theme='swiss'] :is(h1, h2, h3, h4) {
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+/* Stylistic sets ss01/cv01 are Satoshi/Clash glyph features; neutralise them
+   for the systems that swap in a different typeface (Switzer/Zodiak/Cabinet). */
+html[data-theme='swiss'] body,
+html[data-theme='atelier'] body,
+html[data-theme='humanist'] body {
+  font-feature-settings: normal;
+}
+
+/* — Atelier — high-contrast Zodiak serif display over a clean General Sans
+     body. Soft micro-radius, warm ivory ground, restrained antique gold.     */
+html[data-theme='atelier'] {
+  --color-bone: #f2ece4;
+  --color-bone-200: #e9e0d3;
+  --color-ink: #1b1614;
+  --color-ink-soft: #50443d;
+  --color-stone: #c2b3a3;
+  --color-clay: #785b18;
+  --color-clay-deep: #5f4713;
+  --color-clay-on-dark: #d8b25c;
+  --color-char: #1b1614;
+  --color-char-700: #271e1a;
+  --color-line: #e2d6c6;
+
+  --font-display: 'Zodiak', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-body: 'General Sans', ui-sans-serif, system-ui, sans-serif;
+  --radius-pill: 4px;
+  --radius-card: 7px;
+  --radius-sm: 4px;
+  --img-filter: grayscale(1) sepia(0.35) saturate(0.75) brightness(1.02);
+}
+html[data-theme='atelier'] :is(h1, h2, h3, h4) {
+  font-weight: 700;
+  letter-spacing: -0.012em;
+}
+
+/* — Humanist — friendly contemporary: Cabinet Grotesk display, General Sans
+     body, generous rounding, a confident cobalt accent on warm cream.        */
+html[data-theme='humanist'] {
+  --color-bone: #f4f1ea;
+  --color-bone-200: #e9e4d9;
+  --color-ink: #16181d;
+  --color-ink-soft: #454954;
+  --color-stone: #b0b2b8;
+  --color-clay: #2952cc;
+  --color-clay-deep: #1f43ad;
+  --color-clay-on-dark: #7e9af0;
+  --color-char: #14161b;
+  --color-char-700: #202329;
+  --color-line: #ddd8cd;
+
+  --font-display: 'Cabinet Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'General Sans', ui-sans-serif, system-ui, sans-serif;
+  --radius-pill: 999px;
+  --radius-card: 1.6rem;
+  --radius-sm: 1rem;
+  --img-filter: grayscale(1) sepia(0.4) hue-rotate(185deg) saturate(0.45) brightness(1.02);
+}
+html[data-theme='humanist'] :is(h1, h2, h3, h4) {
+  font-weight: 800;
+  letter-spacing: -0.022em;
+}

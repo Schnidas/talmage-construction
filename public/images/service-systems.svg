@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Systems">
+  <defs>
+    <linearGradient id="bg-gef7c7" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4efe9"/>
+      <stop offset="1" stop-color="#ece4da"/>
+    </linearGradient>
+    
+  <filter id="gr-gef7c7">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+    <feComposite operator="over" in2="SourceGraphic"/>
+  </filter>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg-gef7c7)"/>
+  <g transform="translate(320 220) scale(1)">
+    <g opacity="0.9"><g fill="none" stroke="#c0532e" stroke-width="3">
+      <path d="M180 250 v120 a60 60 0 0 0 60 60 h60 a50 50 0 0 1 50 50 v40"/>
+      <circle cx="180" cy="240" r="14"/><circle cx="350" cy="540" r="14"/>
+      <path d="M620 240 l-40 130 h70 l-50 150 l140-180 h-70 l40-100z"/>
+    </g></g>
+  </g>
+  <rect width="1600" height="1200" filter="url(#gr-gef7c7)" opacity="0.5"/>
+  <g font-family="'Clash Display','Arial Black',sans-serif">
+        <text x="64" y="1080" font-family="Satoshi,Arial,sans-serif" font-size="26" letter-spacing="6" fill="#c0532e" opacity="0.85">Talmage Construction</text>
+        <text x="60" y="1144" font-size="80" font-weight="700" fill="#1a1714">Systems</text>
+      </g>
+</svg>

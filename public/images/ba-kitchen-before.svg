@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Before">
+  <defs>
+    <linearGradient id="bg-g46iy9" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#cfc8c0"/>
+      <stop offset="1" stop-color="#b9b1a8"/>
+    </linearGradient>
+    
+  <filter id="gr-g46iy9">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+    <feComposite operator="over" in2="SourceGraphic"/>
+  </filter>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg-g46iy9)"/>
+  <g transform="translate(320 220) scale(1)">
+    <g opacity="0.9"><g fill="none" stroke="#7d7468" stroke-width="3">
+      <rect x="120" y="300" width="320" height="60" rx="8"/>
+      <rect x="120" y="360" width="320" height="160"/>
+      <path d="M200 360 v160 M280 360 v160 M360 360 v160"/>
+      <rect x="540" y="220" width="280" height="120" rx="8"/>
+      <path d="M540 470 h280 M560 470 v60 h240 v-60"/>
+      <circle cx="600" cy="430" r="8"/><circle cx="640" cy="430" r="8"/>
+    </g></g>
+  </g>
+  <rect width="1600" height="1200" filter="url(#gr-g46iy9)" opacity="0.5"/>
+  <g font-family="'Clash Display','Arial Black',sans-serif">
+        <text x="64" y="1080" font-family="Satoshi,Arial,sans-serif" font-size="26" letter-spacing="6" fill="#7d7468" opacity="0.85">KITCHEN · Salem</text>
+        <text x="60" y="1144" font-size="80" font-weight="700" fill="#1a1714">Before</text>
+      </g>
+</svg>

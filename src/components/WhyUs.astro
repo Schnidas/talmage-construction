@@ -1,0 +1,41 @@
+---
+import ScrollText from './ScrollText.astro';
+---
+
+<section class="why container-x" id="why">
+  <p class="eyebrow label" data-reveal>Why Talmage Construction</p>
+  <div class="statement">
+    <ScrollText
+      as="h2"
+      class="display-md"
+      text="Your home isn't a job site. It's where your life happens. So we treat every remodel like it's our own. Clean, careful, and finished exactly as promised."
+      accent={['own.', 'promised.']}
+    />
+  </div>
+</section>
+
+<style>
+  .why {
+    padding-block: clamp(6rem, 14vh, 11rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .label {
+    color: var(--color-clay);
+  }
+  .statement {
+    max-width: 56rem;
+  }
+  @media (min-width: 900px) {
+    .why {
+      grid-template-columns: 14rem 1fr;
+      align-items: start;
+    }
+    .label {
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+      padding-top: 0.75rem;
+    }
+  }
+</style>

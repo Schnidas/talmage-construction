@@ -1,0 +1,22 @@
+{
+  "name": "Talmage Construction",
+  "slug": "talmage-construction",
+  "phone": "(503) 932-3975",
+  "email": "info@talmageconstruction.com",
+  "address": "4676 Commercial St SE, Salem, OR 97302",
+  "city": "Salem",
+  "state": "OR",
+  "zip": "97302",
+  "serviceArea": "Salem · Redmond · Corvallis · Albany, OR",
+  "hours": "Mon-Sat 7 AM - 6 PM",
+  "hoursShort": "Mon-Sat 7 AM-6 PM",
+  "rating": { "score": "4.9", "count": 9 },
+  "owner": "Isaac Talmage",
+  "domain": "talmageconstruction.com",
+  "googleReviewsUrl": "https://www.google.com/search?q=Talmage+Construction+Salem+OR",
+  "about": "Veteran-owned and family-operated general contractor based in Salem, OR. Talmage Construction builds and remodels homes throughout the Willamette Valley with the discipline, precision, and integrity instilled by military service. From new home builds to kitchen and bath remodels, we deliver honest estimates and meticulous craftsmanship on every project.",
+  "vetOwned": true,
+  "postalCode": "97302",
+  "latitude": 44.9024,
+  "longitude": -123.0350
+}

@@ -1,0 +1,42 @@
+---
+// The full Talmage Construction single-page body. Composed once here so every colour and
+// design-token variant renders a byte-for-byte identical page that re-skins
+// purely through the data-theme tokens on <html> — no duplicated markup.
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import WhyUs from './WhyUs.astro';
+import Services from './Services.astro';
+import BeforeAfter from './BeforeAfter.astro';
+import Process from './Process.astro';
+import WhyChoose from './WhyChoose.astro';
+import Testimonials from './Testimonials.astro';
+import Cta from './Cta.astro';
+import Footer from './Footer.astro';
+---
+
+<Nav />
+<main>
+  <Hero />
+  {/* Everything after the hero rides up as one rounded panel over the photo */}
+  <div class="page-rise">
+    <WhyUs />
+    <Services />
+    <BeforeAfter />
+    <Process />
+    <WhyChoose />
+    <Testimonials />
+    <Cta />
+  </div>
+</main>
+<Footer />
+
+<style>
+  .page-rise {
+    position: relative;
+    z-index: 2;
+    background: var(--color-bone);
+    margin-top: clamp(-4.5rem, -6vw, -2.5rem);
+    border-radius: var(--radius-rise, 2rem) var(--radius-rise, 2rem) 0 0;
+    box-shadow: 0 -36px 70px -34px rgb(var(--shadow-rgb) / 0.55);
+  }
+</style>

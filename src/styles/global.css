@@ -1,0 +1,186 @@
+@import 'tailwindcss';
+
+/* ============================================================================
+   Talmage Construction — "Craftsman Editorial" design system
+   Warm plaster paper · clay/terracotta accent · editorial grotesque type
+   Fonts self-served from Fontshare (Clash Display + Satoshi) — see Base layout.
+   ========================================================================== */
+
+@theme {
+  /* — Color story: one dominant neutral, one accent, a warm-dark workshop tone — */
+  --color-bone: #f4efe9; /* warm plaster paper — dominant background */
+  --color-bone-200: #ece4da; /* slightly deeper plaster for panels */
+  --color-ink: #1a1714; /* warm near-black — primary text */
+  --color-ink-soft: #4a423b; /* secondary text */
+  --color-stone: #b6a99b; /* muted taupe — the "upcoming" word in scroll-fill */
+  --color-clay: #b54a28; /* terracotta accent (AA 4.6:1 on bone for small text) */
+  --color-clay-deep: #9c3f20; /* pressed/hover accent */
+  --color-clay-on-dark: #db8a63; /* lighter clay for small labels on charcoal */
+  --color-char: #1c1916; /* warm charcoal — the dark "workshop" section */
+  --color-char-700: #2a2521; /* charcoal panel */
+  --color-line: #ddd2c6; /* hairline dividers on bone */
+  --color-focus: var(--color-clay); /* keyboard focus ring; themes may override */
+
+  /* — Type — */
+  --font-display: 'Clash Display', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+
+  /* — Motion — */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* — Layout — */
+  --container: 88rem; /* 1408px max content width */
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  /* — Shape & elevation (themeable: variant systems retune corner + shadow) — */
+  --radius-pill: 999px; /* pill buttons, tags, dots */
+  --radius-card: 1.15rem; /* image cards, form/stat panels */
+  --radius-sm: 0.6rem; /* inputs, brand mark, menu toggle */
+  --shadow-rgb: 26 23 20; /* warm-ink shadow color, as an R G B triple */
+}
+
+/* ------------------------------------------------------------------ base -- */
+:root {
+  color-scheme: light;
+  --header-h: 4.75rem;
+}
+
+* {
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+/* Lenis manages scroll; disable native smooth when JS is on to avoid conflict */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.96rem + 0.3vw, 1.125rem);
+  line-height: 1.6;
+  font-feature-settings: 'ss01', 'cv01';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+::selection {
+  background: var(--color-clay);
+  color: var(--color-bone);
+}
+
+/* Accessible focus ring */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------- reusable utilities -- */
+.container-x {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Small left-aligned section label (reference signature) */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Fluid display scale */
+.display-xl {
+  font-size: clamp(3.25rem, 1.5rem + 9vw, 11rem);
+}
+.display-lg {
+  font-size: clamp(2.5rem, 1.2rem + 6vw, 7rem);
+}
+.display-md {
+  font-size: clamp(2rem, 1.3rem + 3.4vw, 4.25rem);
+}
+
+/* Paper grain overlay — applied to <body>::before, low-cost, fixed */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------- scroll-reveal states -- */
+/* Elements start hidden ONLY when JS+motion is available (set on <html>).    */
+html.has-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  will-change: transform, opacity;
+}
+
+/* Two-tone scroll-fill: words sit in stone, fill to ink as they scroll up.   */
+.scrollfill {
+  color: var(--color-stone);
+}
+.scrollfill .word {
+  transition: color 0.18s linear;
+}
+.scrollfill .word.is-lit {
+  color: var(--color-ink);
+}
+.scrollfill .word.accent.is-lit {
+  color: var(--color-clay);
+}
+
+/* ----------------------------------------------------- reduced motion -- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.has-motion [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .scrollfill,
+  .scrollfill .word {
+    color: var(--color-ink);
+  }
+  .scrollfill .word.accent {
+    color: var(--color-clay);
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,263 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-header);
+  color: var(--cream);
+  transition:
+    color var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out),
+    padding var(--dur) var(--ease-out);
+  padding-block: clamp(0.85rem, 0.6rem + 1vw, 1.35rem);
+  padding-top: calc(clamp(0.85rem, 0.6rem + 1vw, 1.35rem) + env(safe-area-inset-top, 0px));
+  /* Matte frosted glass over the hero (smoked, mostly-opaque tint + blur) */
+  background-color: color-mix(in srgb, var(--espresso) 58%, transparent);
+  backdrop-filter: blur(20px) saturate(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.1);
+  border-bottom: 1px solid color-mix(in srgb, var(--cream) 16%, transparent);
+}
+
+.header.scrolled {
+  color: var(--ink);
+  /* Matte: fully opaque + strong blur so no content shows through */
+  background-color: var(--paper);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-bottom-color: var(--line);
+  padding-block: 0.7rem;
+  padding-top: calc(0.7rem + env(safe-area-inset-top, 0px));
+}
+
+@media (max-width: 33rem) {
+  .brandSuffix { display: none; }
+}
+
+/* When the menu is open the bar blends into the dark overlay */
+.header.menuOpen {
+  color: var(--cream);
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* ---- Brand ---- */
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+.wordmark {
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.55rem);
+}
+.brandSuffix {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  transform: translateY(-0.1em);
+}
+
+/* ---- Desktop nav ---- */
+.nav {
+  display: none;
+  align-items: center;
+  gap: clamp(1.4rem, 0.5rem + 1.6vw, 2.6rem);
+}
+.navLink {
+  position: relative;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding-block: 0.35rem;
+  opacity: 0.85;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur) var(--ease-out);
+}
+.navLink:hover { opacity: 1; }
+.navLink:hover::after,
+.navLink:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---- Actions ---- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.callBtn {
+  display: none;
+  font-size: 0.85rem;
+  padding: 0.85em 1.4em;
+}
+.callBtn svg { font-size: 1.05em; }
+
+.callIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: 1.1rem;
+  opacity: 0.85;
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.callIcon:hover { opacity: 1; transform: translateY(-2px); }
+
+/* ---- Hamburger ---- */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  position: relative;
+  z-index: 1;
+}
+.toggleBars {
+  position: relative;
+  width: 22px;
+  height: 12px;
+}
+.toggleBars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+.toggleBars span:first-child { top: 0; }
+.toggleBars span:last-child { bottom: 0; }
+.menuOpen .toggleBars span:first-child { transform: translateY(5.25px) rotate(45deg); }
+.menuOpen .toggleBars span:last-child { transform: translateY(-5.25px) rotate(-45deg); }
+
+/* ==========================================================================
+   Mobile menu overlay
+   ========================================================================== */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  background: var(--espresso);
+  color: var(--cream);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out), visibility 0s linear var(--dur);
+}
+.menu::before {
+  /* faint grain on the dark panel too */
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.menuVisible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity var(--dur) var(--ease-out), visibility 0s;
+}
+
+.menuInner {
+  position: relative;
+  height: 100%;
+  max-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 6rem var(--gutter) 3rem;
+}
+.menuEyebrow {
+  color: var(--cream);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur) var(--ease-out) 0.05s, transform var(--dur) var(--ease-out) 0.05s;
+}
+.menuVisible .menuEyebrow { opacity: 0.7; transform: none; }
+
+.menuNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.menuLink {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 1.4rem + 5vw, 3.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  padding-block: 0.15em;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+.menuVisible .menuLink { opacity: 1; transform: none; }
+.menuLink:hover { color: var(--clay); }
+.menuLinkIndex {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--clay);
+  opacity: 0.9;
+}
+
+.menuFoot {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line-cream);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--dur) var(--ease-out) 0.25s, transform var(--dur) var(--ease-out) 0.25s;
+}
+.menuVisible .menuFoot { opacity: 1; transform: none; }
+.menuCall { align-self: flex-start; }
+.menuAddress {
+  font-style: normal;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--cream) 72%, transparent);
+}
+
+/* ==========================================================================
+   Desktop breakpoint
+   ========================================================================== */
+@media (min-width: 60rem) {
+  .nav { display: flex; }
+  .callBtn { display: inline-flex; }
+  .callIcon { display: none; }
+  .toggle { display: none; }
+  .menu { display: none; }
+}

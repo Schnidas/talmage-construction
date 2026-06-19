@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Before">
+  <defs>
+    <linearGradient id="bg-gsbeki" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#cfc8c0"/>
+      <stop offset="1" stop-color="#b9b1a8"/>
+    </linearGradient>
+    
+  <filter id="gr-gsbeki">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+    <feComposite operator="over" in2="SourceGraphic"/>
+  </filter>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg-gsbeki)"/>
+  <g transform="translate(320 220) scale(1)">
+    <g opacity="0.9"><g fill="none" stroke="#7d7468" stroke-width="3">
+      <path d="M150 520 v-120 a30 30 0 0 1 30-30 h220 a30 30 0 0 1 30 30 v120"/>
+      <path d="M150 460 h280"/>
+      <rect x="540" y="250" width="300" height="200"/>
+      <path d="M540 250 l150 110 l150-110"/>
+      <path d="M620 520 h240"/>
+    </g></g>
+  </g>
+  <rect width="1600" height="1200" filter="url(#gr-gsbeki)" opacity="0.5"/>
+  <g font-family="'Clash Display','Arial Black',sans-serif">
+        <text x="64" y="1080" font-family="Satoshi,Arial,sans-serif" font-size="26" letter-spacing="6" fill="#7d7468" opacity="0.85">LIVING ROOM · Salem</text>
+        <text x="60" y="1144" font-size="80" font-weight="700" fill="#1a1714">Before</text>
+      </g>
+</svg>

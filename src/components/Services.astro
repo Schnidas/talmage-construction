@@ -1,0 +1,156 @@
+---
+import { services } from '../data/site';
+---
+
+<section class="services container-x" id="services">
+  <header class="head">
+    <p class="eyebrow" data-reveal>Services</p>
+    <h2 class="display-md" data-reveal data-reveal-delay="0.05">
+      Everything your home<br />needs, under one family.
+    </h2>
+  </header>
+
+  <ul class="grid" role="list">
+    {
+      services.map((s, i) => (
+        <li class="card" data-reveal data-reveal-delay={(i % 3) * 0.06}>
+          <a class="card-link" href="#contact">
+            <div class="thumb">
+              <img src={s.img} alt={`${s.title} by Talmage Construction`} loading="lazy" />
+            </div>
+            <div class="body">
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+              <span class="more">
+                Start this project
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .services {
+    padding-block: clamp(2rem, 6vh, 4rem) clamp(5rem, 12vh, 9rem);
+  }
+  .head {
+    max-width: 46rem;
+    margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
+  }
+  .head .eyebrow {
+    color: var(--color-clay);
+    margin-bottom: 1rem;
+  }
+  /* Mobile: horizontal snap-scroll rail, bleeding edge-to-edge so the next
+     card peeks in and signals there's more to swipe. */
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--color-clay) 55%, transparent) transparent;
+  }
+  .grid::-webkit-scrollbar {
+    height: 5px;
+  }
+  .grid::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-clay) 55%, transparent);
+    border-radius: var(--radius-pill);
+  }
+  .card {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+  .card-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    background: color-mix(in srgb, var(--color-bone) 50%, #fff 50%);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: transform 0.4s var(--ease-out-soft), box-shadow 0.4s, border-color 0.4s;
+  }
+  .card-link:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-clay) 50%, var(--color-line));
+    box-shadow: 0 24px 50px -28px rgb(var(--shadow-rgb) /0.4);
+  }
+  .thumb {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-bone-200);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out-soft);
+  }
+  .card-link:hover .thumb img {
+    transform: scale(1.06);
+  }
+  .body {
+    padding: 1.5rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+  .body h3 {
+    font-size: 1.6rem;
+  }
+  .body p {
+    color: var(--color-ink-soft);
+    font-size: 0.98rem;
+    margin: 0;
+  }
+  .more {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--color-ink);
+  }
+  .card-link:hover .more {
+    color: var(--color-clay);
+  }
+  @media (min-width: 680px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      overflow: visible;
+      margin-inline: 0;
+      padding: 0;
+    }
+    .card {
+      flex: none;
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

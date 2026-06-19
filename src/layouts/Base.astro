@@ -1,0 +1,180 @@
+---
+import '../styles/global.css';
+import '../styles/themes.css';
+import { business, contact } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** data-theme key from themes.css. Omit for the base Craftsman Editorial look. */
+  theme?: string;
+  /** Optional extra font stylesheet href (design-token systems load alternate type). */
+  fonts?: string;
+  /** When set, renders a fixed "back to the variant gallery" badge. */
+  variant?: { name: string; group: string };
+}
+const {
+  title = `${business.legalName} · ${business.tagline}`,
+  description = `${business.about} Serving ${business.serviceArea}. Rated ${business.rating.score}★ on ${business.rating.source}. Call ${contact.phone} for a free estimate.`,
+  theme,
+  fonts,
+  variant,
+} = Astro.props;
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+
+// LocalBusiness structured data — helps Talmage Construction show up in local/maps search.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  name: business.legalName,
+  description: business.about,
+  telephone: contact.phone,
+  email: contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '4676 Commercial St SE',
+    addressLocality: 'Salem',
+    addressRegion: 'OR',
+    postalCode: '97302',
+    addressCountry: 'US',
+  },
+  areaServed: business.serviceArea,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: business.rating.score,
+    reviewCount: business.rating.count,
+  },
+  openingHours: 'Mo-Sa 07:00-18:00',
+};
+---
+
+<!doctype html>
+<html lang="en" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="/images/og.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1c1916" />
+    {/* Variant duplicates are for internal review only — keep them out of search. */}
+    {variant && <meta name="robots" content="noindex, follow" />}
+
+    <!-- Fonts: Clash Display + Satoshi (Fontshare) — premium, non-default -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700,900&display=swap"
+    />
+    {/* Design-token systems load an alternate type family on top of the base. */}
+    {fonts && <link rel="stylesheet" href={fonts} />}
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- No-flash motion gate: hide reveal elements ONLY when motion is allowed. -->
+    <script is:inline>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('has-motion');
+      }
+    </script>
+  </head>
+  <body class="grain">
+    <div class="progress-bar" data-progress aria-hidden="true"></div>
+    <slot />
+
+    {
+      variant && (
+        <a class="variant-badge" href="/variants" aria-label="Back to the variant gallery">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M15 6l-6 6 6 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="vb-group">{variant.group}</span>
+          <span class="vb-name">{variant.name}</span>
+        </a>
+      )
+    }
+
+    <script>
+      import '../scripts/motion.ts';
+    </script>
+
+    <style>
+      .progress-bar {
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: var(--color-clay);
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+        z-index: 70;
+        will-change: transform;
+      }
+
+      /* Floating return-to-gallery chip, shown only on variant pages. */
+      .variant-badge {
+        position: fixed;
+        right: clamp(0.85rem, 2vw, 1.5rem);
+        bottom: clamp(0.85rem, 2vw, 1.5rem);
+        z-index: 80;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.55rem 0.95rem 0.55rem 0.7rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        line-height: 1;
+        color: var(--color-bone);
+        background: color-mix(in srgb, var(--color-char) 88%, transparent);
+        border: 1px solid color-mix(in srgb, var(--color-bone) 22%, transparent);
+        backdrop-filter: blur(10px) saturate(1.1);
+        box-shadow: 0 14px 34px -22px rgb(var(--shadow-rgb) / 0.8);
+        transition: transform 0.25s var(--ease-out-soft), background 0.25s;
+      }
+      .variant-badge:hover {
+        transform: translateY(-2px);
+        background: var(--color-char);
+      }
+      .variant-badge svg {
+        color: var(--color-clay-on-dark);
+        flex: none;
+        transition: transform 0.25s var(--ease-out-soft);
+      }
+      .variant-badge:hover svg {
+        transform: translateX(-2px);
+      }
+      .vb-group {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-weight: 700;
+        font-size: 0.62rem;
+        color: var(--color-clay-on-dark);
+      }
+      .vb-name {
+        font-weight: 600;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .variant-badge {
+          transition: none;
+        }
+      }
+    </style>
+  </body>
+</html>

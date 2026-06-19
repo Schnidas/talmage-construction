@@ -1,0 +1,166 @@
+.gallery {
+  padding-block: var(--section-y);
+  background: var(--paper-2);
+  overflow: clip;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+}
+.title {
+  margin-top: 1.1rem;
+}
+.note {
+  max-width: 34ch;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+/* ---- Track viewport ---- */
+.pin {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.pin::-webkit-scrollbar {
+  display: none;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 0.5rem + 2vw, 2rem);
+  width: max-content;
+  padding-inline: var(--gutter);
+  padding-block: 0.5rem;
+}
+
+/* ---- Project card ---- */
+.card {
+  flex: 0 0 auto;
+  width: min(80vw, 21rem);
+  scroll-snap-align: center;
+}
+.cardMedia {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--sand);
+  box-shadow: var(--shadow-md);
+}
+.cardImage {
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.card:hover .cardImage {
+  transform: scale(1.05);
+}
+.cardNum {
+  position: absolute;
+  top: 0.9rem;
+  left: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--cream);
+  opacity: 0.85;
+  mix-blend-mode: difference;
+}
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 1.1rem;
+}
+.cardCat {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.cardTitle {
+  font-size: 1.35rem;
+  letter-spacing: -0.015em;
+}
+
+/* ---- End CTA card ---- */
+.endCard {
+  flex: 0 0 auto;
+  width: min(78vw, 20rem);
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 2.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--sand);
+  scroll-snap-align: center;
+  transition: background var(--dur) var(--ease-out);
+}
+.endCard:hover {
+  background: var(--sand-deep);
+}
+.endCat {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.endTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 1.4rem + 2vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.endTitle em {
+  font-style: italic;
+  color: var(--clay);
+}
+.endLink {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Mobile: show only first 3 project cards (keep the end CTA card) */
+@media (max-width: 59.99rem) {
+  .card:nth-child(n+4) {
+    display: none;
+  }
+}
+
+/* All sizes: pinned state activated by GSAP JS */
+.pin.pinned {
+  overflow: hidden;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  scroll-snap-type: none;
+}
+.pin.pinned .track {
+  padding-block: 0;
+}
+
+/* Desktop: taller height-driven cards */
+@media (min-width: 60rem) {
+  .card {
+    width: auto;
+  }
+  .cardMedia {
+    height: min(58vh, 34rem);
+    width: auto;
+    aspect-ratio: 4 / 5;
+  }
+  .endCard {
+    width: 24rem;
+  }
+}

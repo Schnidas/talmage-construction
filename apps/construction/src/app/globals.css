@@ -1,0 +1,337 @@
+/* ==========================================================================
+   Talmage Construction — Design System
+   Aesthetic: Warm Editorial Craftsman (luxury minimalism on warm paper)
+   ========================================================================== */
+
+:root {
+  /* ---- Color: Slate & Steel — cool architectural palette ---- */
+  --paper: oklch(0.95 0.006 240);
+  --paper-2: oklch(0.925 0.008 240);
+  --sand: oklch(0.89 0.01 235);
+  --sand-deep: oklch(0.84 0.013 235);
+  --cream: oklch(0.975 0.004 240);
+  --espresso: oklch(0.21 0.02 250);
+  --espresso-2: oklch(0.26 0.022 250);
+
+  --ink: oklch(0.26 0.018 250);
+  --ink-soft: oklch(0.46 0.02 250);
+  --ink-faint: oklch(0.62 0.018 250);
+
+  --clay: oklch(0.64 0.14 245);
+  --clay-deep: oklch(0.54 0.15 248);
+
+  --line: oklch(0.26 0.02 250 / 0.14);
+  --line-strong: oklch(0.26 0.02 250 / 0.26);
+  --line-cream: oklch(0.97 0.004 240 / 0.16);
+  --line-cream-strong: oklch(0.97 0.004 240 / 0.32);
+
+  /* ---- Typography ---- */
+  --font-display: var(--font-serif), "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: var(--font-grotesque), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid type scale (mobile-first; grows with viewport) */
+  --fs-eyebrow: 0.74rem;
+  --fs-meta: 0.8rem;
+  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
+  --fs-lead: clamp(1.18rem, 1.05rem + 0.7vw, 1.5rem);
+  --fs-h3: clamp(1.35rem, 1.1rem + 1.1vw, 1.9rem);
+  --fs-h2: clamp(2.1rem, 1.4rem + 3.2vw, 3.9rem);
+  --fs-display: clamp(2.9rem, 1.2rem + 8.4vw, 8.5rem);
+  --fs-mega: clamp(3.4rem, 0.5rem + 13vw, 13rem);
+
+  --lh-tight: 1.02;
+  --lh-snug: 1.14;
+  --lh-body: 1.62;
+  --measure: 64ch;
+
+  /* ---- Spacing rhythm ---- */
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-8: 6rem;
+  --space-9: 8rem;
+  --section-y: clamp(5rem, 3.2rem + 9vw, 11rem);
+  --container: 82rem;
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+
+  /* ---- Form / radius / shadow ---- */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(24,33,46,0.06), 0 4px 14px rgba(24,33,46,0.07);
+  --shadow-md: 0 4px 12px rgba(24,33,46,0.09), 0 18px 50px rgba(24,33,46,0.13);
+  --shadow-lg: 0 10px 30px rgba(24,33,46,0.11), 0 40px 90px rgba(24,33,46,0.18);
+
+  /* ---- Motion (CSS transitions; GSAP uses its own eases) ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur-fast: 0.25s;
+  --dur: 0.5s;
+  --dur-slow: 0.9s;
+
+  /* ---- Layering ---- */
+  --z-grain: 1;
+  --z-menu: 190;
+  --z-header: 200;
+
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Lenis manages smoothing — do NOT set scroll-behavior here */
+}
+
+body {
+  min-height: 100svh;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+  letter-spacing: 0.003em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img, picture, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* Themeable image treatment (e.g. the monochrome variant desaturates photos) */
+img {
+  filter: var(--img-filter, none);
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button { background: none; border: none; cursor: pointer; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.015em;
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+::selection {
+  background: var(--clay);
+  color: var(--cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Paper-grain texture — subtle craftsman tactility (the memorable canvas)
+   ========================================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* ==========================================================================
+   Layout utilities
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+/* Anchor targets clear the fixed header on native (reduced-motion) jumps */
+:where(section[id]) {
+  scroll-margin-top: 5rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Eyebrow label — tracked uppercase with a leading tick */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.8em;
+  height: 1px;
+  background: var(--clay);
+  opacity: 0.85;
+}
+.eyebrow--center::after {
+  content: "";
+  width: 1.8em;
+  height: 1px;
+  background: var(--clay);
+  opacity: 0.85;
+}
+
+/* Animated underline link */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 500;
+  padding-block: 0.15em;
+}
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur) var(--ease-out);
+}
+.link:hover::after,
+.link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+.link svg { transition: transform var(--dur) var(--ease-out); }
+.link:hover svg { transform: translateX(4px); }
+
+/* Buttons */
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--cream);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 1.05em 1.9em;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  border-radius: var(--radius-pill);
+  isolation: isolate;
+  overflow: hidden;
+  transition: color var(--dur) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  will-change: transform;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--clay);
+  transform: translateY(101%);
+  transition: transform var(--dur) var(--ease-out);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:hover::before { transform: translateY(0); }
+.btn:active { transform: translateY(0); }
+
+.btn--ghost {
+  --btn-fg: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+}
+.btn--ghost::before { background: var(--ink); }
+.btn--ghost:hover { --btn-fg: var(--cream); border-color: var(--ink); }
+
+.btn--lg { padding: 1.2em 2.2em; font-size: 1rem; }
+
+.btn svg { transition: transform var(--dur) var(--ease-out); }
+.btn:hover svg { transform: translateX(3px); }
+
+/* Section heading */
+.heading {
+  font-size: var(--fs-h2);
+  letter-spacing: -0.02em;
+}
+.heading em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+/* The signature ampersand mark */
+.amp {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Reveal scaffolding — flash-free + reduced-motion safe
+   Elements are pre-hidden only when JS is active AND motion is allowed.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal],
+  html.js [data-hero] { opacity: 0; }
+}
+
+/* ==========================================================================
+   Reduced motion — show everything, kill transitions
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal],
+  [data-hero] { opacity: 1 !important; transform: none !important; }
+}
