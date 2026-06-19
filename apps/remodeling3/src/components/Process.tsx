@@ -13,7 +13,7 @@ export default function Process() {
       number: '01',
       title: 'Structural Consultation',
       subtitle: 'Free estimates & layout inspection',
-      description: 'Isaac Talmage arrives directly at your home in Salem or surrounding Salem neighborhoods. We analyze wall structures, verify piping routes, inspect existing waterproofing layers, and map out spatial metrics.',
+      description: 'Joe Talmage arrives directly at your home in Salem or surrounding Salem neighborhoods. We analyze wall structures, verify piping routes, inspect existing waterproofing layers, and map out spatial metrics.',
       details: [
         'Detailed diagnostic look under sinks & crawlspaces',
         'Transparent structural feasibility report',
@@ -39,10 +39,10 @@ export default function Process() {
       number: '03',
       title: 'Immaculate Craft Build',
       subtitle: 'Owner-supervised build seqeunce',
-      description: 'Isaac Talmage, his core crew, and family execute the physical conversion. We prioritize clean workspaces, high structural safety, hot-mopped leakproof barriers, and precision tiling so your outcomes are guaranteed for a lifetime.',
+      description: 'Joe Talmage, his core crew, and family execute the physical conversion. We prioritize clean workspaces, high structural safety, hot-mopped leakproof barriers, and precision tiling so your outcomes are guaranteed for a lifetime.',
       details: [
         'Daily cleanup of dust & project debris',
-        'Daily updates from Isaac Talmage',
+        'Daily updates from Joe Talmage',
         'Sequential scheduling — no leaving you midway',
         'Final rigorous detailing pass'
       ],

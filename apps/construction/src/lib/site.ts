@@ -105,7 +105,7 @@ export const reviews: Review[] = [
   },
   {
     quote:
-      "Isaac Talmage is very thorough and has keen attention to detail and prides in his work.",
+      "Joe Talmage is very thorough and has keen attention to detail and prides in his work.",
     source: "Google Review",
     context: "Full remodel",
   },

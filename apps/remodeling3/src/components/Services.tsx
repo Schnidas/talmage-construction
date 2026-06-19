@@ -144,7 +144,7 @@ export default function Services() {
           </div>
           <div className="max-w-md">
             <p className="font-sans text-xs sm:text-sm text-accent-warm/70 leading-relaxed">
-              Talmage Construction handles every type of home remodel sequentially. Isaac Talmage and his crew maintain overall design symmetry, clean workflows, and direct owner supervision.
+              Talmage Construction handles every type of home remodel sequentially. Joe Talmage and his crew maintain overall design symmetry, clean workflows, and direct owner supervision.
             </p>
           </div>
         </div>
@@ -239,7 +239,7 @@ export default function Services() {
                 Have a specialized or custom project in mind?
               </h4>
               <p className="font-sans text-xs text-accent-warm/60 leading-normal">
-                Whether you need minor repair tile works or full dryrot framing rebuilds, Isaac Talmage and his crew will handle it. We operate in Salem and surrounds.
+                Whether you need minor repair tile works or full dryrot framing rebuilds, Joe Talmage and his crew will handle it. We operate in Salem and surrounds.
               </p>
             </div>
             <button

@@ -8,7 +8,7 @@ export default function WhyChooseUs() {
   const advantages = [
     {
       title: 'Family-Based & Local',
-      desc: 'No middlemen or outsourced subs. You deal directly with Isaac Talmage and his crew.',
+      desc: 'No middlemen or outsourced subs. You deal directly with Joe Talmage and his crew.',
       icon: <Hammer className="text-accent-amber" size={18} />
     },
     {
@@ -70,7 +70,7 @@ export default function WhyChooseUs() {
                 4.9 Google Rating <Star fill="#c5a880" size={14} className="text-accent-gold inline shrink-0" />
               </p>
               <p className="font-sans text-[11px] text-accent-warm/75 mt-1.5">
-                Kristen Bailey: "Isaac Talmage and his crew are amazing! Great eye for design."
+                Kristen Bailey: "Joe Talmage and his crew are amazing! Great eye for design."
               </p>
             </div>
           </motion.div>
@@ -95,7 +95,7 @@ export default function WhyChooseUs() {
             </h2>
 
             <p className="font-sans text-sm sm:text-md text-accent-charcoal/80 leading-relaxed mb-8">
-              When you hire Isaac Talmage and his crew, we manage, schedule, and complete your
+              When you hire Joe Talmage and his crew, we manage, schedule, and complete your
               project sequentially so you stay in comfort the whole way through.
             </p>
 

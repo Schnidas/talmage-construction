@@ -50,7 +50,7 @@ export default function About() {
           </h2>
           <p className={styles.lead} data-reveal>
             Talmage Construction is a veteran-owned, family-operated general
-            contractor led by Isaac Talmage — known for precision, honesty, and
+            contractor led by Joe Talmage — known for precision, honesty, and
             genuine pride in every project that leaves their hands.
           </p>
           <p className={styles.text} data-reveal>
@@ -59,7 +59,7 @@ export default function About() {
             jobsites, and craftsmanship you&rsquo;ll see and feel for years.
           </p>
           <p className={styles.signature} data-reveal>
-            — Isaac Talmage, Owner
+            — Joe Talmage, Owner
           </p>
         </div>
       </div>

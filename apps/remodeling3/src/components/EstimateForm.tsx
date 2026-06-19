@@ -141,7 +141,7 @@ export default function EstimateForm() {
             </span>
           </h2>
           <p className="font-sans text-xs sm:text-sm text-accent-charcoal/70 mt-6 leading-relaxed max-w-2xl">
-            Isaac Talmage will inspect your bathroom, kitchen, or living room remodel, advising layouts, advising the best tile niches, stone colors, and lighting routes. Receive a detailed print estimate.
+            Joe Talmage will inspect your bathroom, kitchen, or living room remodel, advising layouts, advising the best tile niches, stone colors, and lighting routes. Receive a detailed print estimate.
           </p>
         </div>
 
@@ -160,11 +160,11 @@ export default function EstimateForm() {
               </span>
               
               <h3 className="font-heading font-extrabold text-xl sm:text-2xl mt-5 mb-3">
-                Call Isaac Talmage Directly
+                Call Joe Talmage Directly
               </h3>
               
               <p className="font-sans text-xs sm:text-sm text-accent-warm/75 leading-relaxed mb-6">
-                Skip the web queues. Isaac Talmage carries his mobile phone on site. Call for immediate scheduling or general remodeling design queries.
+                Skip the web queues. Joe Talmage carries his mobile phone on site. Call for immediate scheduling or general remodeling design queries.
               </p>
 
               <a
@@ -248,7 +248,7 @@ export default function EstimateForm() {
                           type="text"
                           value={formData.fullName}
                           onChange={(e) => handleInputChange('fullName', e.target.value)}
-                          placeholder="Isaac Talmage M."
+                          placeholder="Joe Talmage M."
                           className={`w-full px-4 py-3 bg-accent-warm/50 border rounded-xl font-sans text-xs sm:text-sm focus:outline-none focus:ring-1 focus:bg-white transition-all ${
                             errors.fullName ? 'border-red-500 focus:ring-red-500' : 'border-accent-stone focus:border-accent-amber focus:ring-accent-amber'
                           }`}
@@ -370,7 +370,7 @@ export default function EstimateForm() {
 
                     {/* Email note explanation */}
                     <p className="font-mono text-[9px] text-accent-charcoal/45">
-                      📧 Book requests dispatch instantly to Isaac Talmage M's corporate system proxying info@talmageconstruction.com
+                      📧 Book requests dispatch instantly to Joe Talmage M's corporate system proxying info@talmageconstruction.com
                     </p>
 
                     {/* Form submit button */}
@@ -416,7 +416,7 @@ export default function EstimateForm() {
                     </h3>
 
                     <p className="font-sans text-xs sm:text-sm text-accent-charcoal/70 leading-relaxed max-w-md mb-8">
-                      Your on-site consultation request for a <span className="font-semibold text-accent-amber">{serviceOptions.find(o => o.value === formData.serviceType)?.label}</span> has been securely delivered to Isaac Talmage. We will call you within 24 hours to confirm.
+                      Your on-site consultation request for a <span className="font-semibold text-accent-amber">{serviceOptions.find(o => o.value === formData.serviceType)?.label}</span> has been securely delivered to Joe Talmage. We will call you within 24 hours to confirm.
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-md border-t border-accent-stone pt-6 mb-8 text-left font-mono text-[11px] text-accent-charcoal/60">

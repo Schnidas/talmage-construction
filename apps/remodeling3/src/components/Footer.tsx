@@ -61,7 +61,7 @@ export default function Footer() {
               >
                 <Phone size={16} className="text-accent-gold shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-white">Call Isaac Talmage: (503) 932-3975</p>
+                  <p className="font-semibold text-white">Call Joe Talmage: (503) 932-3975</p>
                   <p className="text-[11px] text-white/50 mt-0.5">Primary project coordination line</p>
                 </div>
               </a>

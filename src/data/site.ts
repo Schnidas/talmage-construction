@@ -7,10 +7,10 @@
 export const business = {
   name: 'Talmage Construction',
   legalName: 'Talmage Construction',
-  owner: 'Isaac Talmage',
+  owner: 'Joe Talmage',
   tagline: 'Veteran-Built. Family-Owned. Done Right.',
   about:
-    "Talmage Construction is a veteran-owned general contractor in Salem, OR. Bathrooms, kitchens, home builds — Isaac Talmage and his family crew bring military-grade discipline and meticulous craftsmanship to every project.",
+    "Talmage Construction is a veteran-owned general contractor in Salem, OR. Bathrooms, kitchens, home builds — Joe Talmage and his family crew bring military-grade discipline and meticulous craftsmanship to every project.",
   rating: { score: '4.9', count: 9, source: 'Google' },
   serviceArea: 'Salem · Redmond · Corvallis · Albany, OR',
 } as const;
@@ -66,7 +66,7 @@ export const services = [
   },
 ] as const;
 
-// Before / after pairs — placeholders until Isaac Talmage's real photos drop in.
+// Before / after pairs — placeholders until Joe Talmage's real photos drop in.
 export const projects = [
   { title: 'Master Bath · Salem', before: '/images/ba-bath-before.jpg', after: '/images/ba-bath-after.jpg' },
   { title: 'Kitchen · Salem', before: '/images/ba-kitchen-before.jpg', after: '/images/ba-kitchen-after.jpg' },
@@ -82,7 +82,7 @@ export const process = [
   {
     n: '02',
     title: 'Design',
-    body: "Isaac Talmage's eye for design helps you choose finishes and layout with confidence. We plan every detail before a tool comes out.",
+    body: "Joe Talmage's eye for design helps you choose finishes and layout with confidence. We plan every detail before a tool comes out.",
   },
   {
     n: '03',
@@ -92,7 +92,7 @@ export const process = [
 ] as const;
 
 export const reasons = [
-  { title: 'Veteran-owned', body: 'Isaac Talmage served our country, then came home and built his family business on the same code: show up, do it right, no excuses.' },
+  { title: 'Veteran-owned', body: 'Joe Talmage served our country, then came home and built his family business on the same code: show up, do it right, no excuses.' },
   { title: 'In time', body: 'Punctual, efficient, and respectful of your home and your schedule.' },
   { title: 'Built to last', body: 'Attention to detail and work designed to hold up for a lifetime.' },
 ] as const;
@@ -107,7 +107,7 @@ export const testimonials = [
   },
   {
     quote:
-      "The Talmage family are highly regarded. Isaac was wonderful to work with — professional, attentive, and genuinely invested in getting everything right.",
+      "The Talmage family are highly regarded. Joe was wonderful to work with — professional, attentive, and genuinely invested in getting everything right.",
     name: 'Verified Google review · Salem, OR',
     stars: 5,
   },
@@ -119,7 +119,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Very professional and knowledgeable. Isaac Talmage is thorough, has keen attention to detail, and takes real pride in his work. Highly recommend.",
+      "Very professional and knowledgeable. Joe Talmage is thorough, has keen attention to detail, and takes real pride in his work. Highly recommend.",
     name: 'Verified Google review · Salem, OR',
     stars: 5,
   },

@@ -9,7 +9,7 @@ export default function Introduction() {
     {
       icon: <Home className="text-accent-amber" size={24} />,
       title: 'Family-Run',
-      text: 'You deal directly with Isaac Talmage and his crew. No middlemen, no outsourced subs.',
+      text: 'You deal directly with Joe Talmage and his crew. No middlemen, no outsourced subs.',
     },
     {
       icon: <Hourglass className="text-accent-amber" size={24} />,
@@ -24,7 +24,7 @@ export default function Introduction() {
     {
       icon: <Award className="text-accent-amber" size={24} />,
       title: 'Eye for Design',
-      text: 'Isaac Talmage advises on tile, layout, and finishes so your vision becomes reality.',
+      text: 'Joe Talmage advises on tile, layout, and finishes so your vision becomes reality.',
     },
   ];
 
@@ -72,7 +72,7 @@ export default function Introduction() {
             className="lg:col-span-7 lg:pt-6 hidden lg:block"
           >
             <p className="font-sans text-lg sm:text-xl text-accent-charcoal/80 font-light leading-relaxed mb-6">
-              With a strong <span className="font-semibold text-accent-amber">4.9-star rating on Google Reviews</span>, Talmage Construction is built on word-of-mouth trust and veteran discipline. Based in Salem, OR, Isaac Talmage and his family crew handle all stages of construction and remodeling seamlessly.
+              With a strong <span className="font-semibold text-accent-amber">4.9-star rating on Google Reviews</span>, Talmage Construction is built on word-of-mouth trust and veteran discipline. Based in Salem, OR, Joe Talmage and his family crew handle all stages of construction and remodeling seamlessly.
             </p>
             <p className="font-sans text-sm sm:text-md text-accent-charcoal/60 leading-relaxed max-w-2xl">
               We manage the entire project from initial consultation, tile sourcing, layout drafting, down to plumbing details and light fixtures. Your project gets completed sequentially and cleanly, without standard subcontractor delays.

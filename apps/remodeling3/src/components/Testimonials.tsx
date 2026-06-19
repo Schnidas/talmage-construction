@@ -12,7 +12,7 @@ export default function Testimonials() {
   const testimonials: (Testimonial & { date: string; project: string })[] = [
     {
       author: 'Kristen Bailey',
-      review: 'Isaac Talmage and his crew are amazing! Punctual, efficient and polite… a great eye for design… we can\'t wait to do the next one!',
+      review: 'Joe Talmage and his crew are amazing! Punctual, efficient and polite… a great eye for design… we can\'t wait to do the next one!',
       rating: 5,
       date: 'March 2026',
       project: 'Gourmet Kitchen Remodel',
@@ -27,7 +27,7 @@ export default function Testimonials() {
     },
     {
       author: 'Rajendra Patel',
-      review: 'Isaac Talmage is very thorough and has keen attention to detail and prides in his work.',
+      review: 'Joe Talmage is very thorough and has keen attention to detail and prides in his work.',
       rating: 5,
       date: 'February 2026',
       project: 'Dryrot Repair & Backsplash Tiling'
