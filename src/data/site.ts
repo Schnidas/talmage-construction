@@ -10,7 +10,7 @@ export const business = {
   owner: 'Joe Talmage',
   tagline: 'Veteran-Built. Family-Owned. Done Right.',
   about:
-    "Talmage Construction is a veteran-owned general contractor in Salem, OR. Bathrooms, kitchens, home builds — Joe Talmage and his family crew bring military-grade discipline and meticulous craftsmanship to every project.",
+    "Talmage Construction is a veteran-owned general contractor in Salem, OR, specializing in ground-up home building. New custom homes, additions, and full remodels — Joe Talmage and his family crew bring military-grade discipline and meticulous craftsmanship to every build.",
   rating: { score: '4.9', count: 9, source: 'Google' },
   serviceArea: 'Salem · Redmond · Corvallis · Albany, OR',
 } as const;
@@ -26,47 +26,60 @@ export const contact = {
     'https://www.google.com/search?q=Talmage+Construction+Salem',
 } as const;
 
-// Services — drawn from the work Talmage Construction is praised for in their reviews.
+// Services — construction-led. New builds and additions come first; remodeling and
+// finish work follow. Talmage is a general contractor, not just a remodeler.
 export const services = [
   {
     n: '01',
-    title: 'Bathroom Remodels',
-    body: 'Full bathroom transformations. Custom tile, vanities, lighting, and waterproofing, done to last a lifetime.',
-    img: '/images/service-bathroom.jpg',
-  },
-  {
-    n: '02',
-    title: 'Kitchen Remodels',
-    body: 'Layouts that work and finishes that wow. Cabinetry, counters, backsplash, and the details that make a kitchen yours.',
+    title: 'New Home Construction',
+    body: 'Ground-up custom homes built to your plans. From foundation to final walkthrough, managed by one family crew who treats your build like their own.',
     img: '/images/service-kitchen.jpg',
   },
   {
+    n: '02',
+    title: 'Additions & ADUs',
+    body: 'More room to live. Room additions, second stories, garages, and accessory dwelling units that match your home like they were always there.',
+    img: '/images/service-build.jpg',
+  },
+  {
     n: '03',
-    title: 'Living & Whole-Home',
-    body: 'Living rooms to whole-home refreshes. Flooring, walls, trim, and flow, reimagined around how your family lives.',
+    title: 'Whole-Home Remodels',
+    body: 'Taking a house down to the studs and bringing it back better. Structural changes, new layouts, and a top-to-bottom rebuild done right.',
     img: '/images/service-living.jpg',
   },
   {
     n: '04',
-    title: 'Tile Work',
-    body: 'The work our clients rave about. Floors, showers, and feature walls with crisp, beautiful tile that elevates the space.',
-    img: '/images/service-tile.jpg',
+    title: 'Kitchen & Bath Remodels',
+    body: 'The rooms that make a home. Custom cabinetry, counters, tile, and fixtures, designed around how you actually live.',
+    img: '/images/service-bathroom.jpg',
   },
   {
     n: '05',
-    title: 'Plumbing & Electrical',
-    body: 'Licensed, careful, and code-correct. The unseen work that makes a remodel safe and dependable for years.',
-    img: '/images/service-systems.jpg',
+    title: 'Custom Tile & Finishes',
+    body: 'The detail work our clients rave about. Floors, showers, feature walls, and finish carpentry with crisp, beautiful craftsmanship.',
+    img: '/images/service-tile.jpg',
   },
   {
     n: '06',
-    title: 'Handyman & Repairs',
-    body: 'The honest fix-it list. From a single repair to ongoing upkeep, done by people who treat your home like their own.',
-    img: '/images/service-handyman.jpg',
+    title: 'Plumbing, Electrical & Systems',
+    body: 'Licensed, code-correct, and built to last — the structural and mechanical work that makes every build safe and dependable for decades.',
+    img: '/images/service-systems.jpg',
   },
 ] as const;
 
-// Before / after pairs — placeholders until Joe Talmage's real photos drop in.
+// Featured builds — the construction work that now leads the page. Placeholder
+// photos for now; swap in Joe Talmage's real ground-up project shots in /public/images.
+export const builds = [
+  { category: 'New Construction', title: 'Custom Home · Redmond', img: '/images/build-4.jpg', alt: 'Great room of a newly built custom home with a clad fireplace' },
+  { category: 'Custom Home', title: 'Hillside Build · Salem', img: '/images/build-1.jpg', alt: 'Kitchen and living space in a newly constructed Talmage home' },
+  { category: 'Addition', title: 'Primary Suite Addition', img: '/images/build-2.jpg', alt: 'Spa-style primary bath built as a home addition' },
+  { category: 'Whole-Home Build', title: 'Great Room · Albany', img: '/images/build-5.jpg', alt: 'Open-concept great room with custom tile and built-ins' },
+  { category: 'New Construction', title: 'Family Home · Corvallis', img: '/images/build-3.jpg', alt: 'Detailed custom finishes in a new family home' },
+  { category: 'Custom Home', title: 'Modern Farmhouse', img: '/images/build-6.jpg', alt: 'Custom kitchen and dining in a modern farmhouse build' },
+] as const;
+
+// Remodel before / after pairs — feed the secondary "Remodels" section. Placeholders
+// until Joe Talmage's real photos drop in.
 export const projects = [
   { title: 'Master Bath · Salem', before: '/images/ba-bath-before.jpg', after: '/images/ba-bath-after.jpg' },
   { title: 'Kitchen · Salem', before: '/images/ba-kitchen-before.jpg', after: '/images/ba-kitchen-after.jpg' },
@@ -87,7 +100,7 @@ export const process = [
   {
     n: '03',
     title: 'Build',
-    body: 'Our family crew shows up on time, works clean, and treats your home with care, right until the work is done exactly as promised.',
+    body: 'Our family crew breaks ground, shows up on time, and works clean — from foundation to final walkthrough, your project is finished exactly as promised.',
   },
 ] as const;
 
@@ -132,9 +145,9 @@ export const testimonials = [
 ] as const;
 
 export const nav = [
+  { label: 'Construction', href: '#builds' },
   { label: 'Services', href: '#services' },
-  { label: 'Our Work', href: '#work' },
-  { label: 'Process', href: '#process' },
+  { label: 'Remodels', href: '#work' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'Contact', href: '#contact' },
 ] as const;

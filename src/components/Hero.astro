@@ -28,6 +28,10 @@ import { business, contact } from '../data/site';
         Veteran-built.<br /><span class="accent">Family-owned.</span>
       </h1>
 
+      <p class="hero-sub" data-reveal data-reveal-delay="0.1">
+        Custom home builds, additions &amp; remodels — done right across the Willamette Valley.
+      </p>
+
       <div class="hero-actions" data-reveal data-reveal-delay="0.14">
         <a class="btn-primary" href="#contact">
           Get a Free Estimate
@@ -129,6 +133,14 @@ import { business, contact } from '../data/site';
   .headline .accent {
     color: var(--color-clay-on-dark);
   }
+  .hero-sub {
+    margin-top: 1.4rem;
+    max-width: 38rem;
+    font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem);
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--color-bone) 82%, transparent);
+    text-shadow: 0 1px 16px rgb(0 0 0 / 0.4);
+  }
   .hero-actions {
     margin-top: 2.25rem;
     display: flex;
@@ -212,6 +224,10 @@ import { business, contact } from '../data/site';
     /* Bigger headline on mobile */
     .headline {
       font-size: clamp(3.4rem, 2.4rem + 4.5vw, 5rem);
+    }
+    .hero-sub {
+      margin-top: 1rem;
+      font-size: 1rem;
     }
     /* Mobile shows the short "Washington State" label, not the full list. */
     .area--full {

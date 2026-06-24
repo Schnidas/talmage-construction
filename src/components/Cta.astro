@@ -10,8 +10,8 @@ import { contact, services, business } from '../data/site';
         Contact <span class="accent">Us</span>
       </h2>
       <p class="lede" data-reveal data-reveal-delay="0.1">
-        Tell us about your space. Joe Talmage will reach out with honest advice and a fair,
-        no-pressure quote.
+        Tell us about your build or remodel. Joe Talmage will reach out with honest advice
+        and a fair, no-pressure quote.
       </p>
 
       <ul class="facts" data-reveal data-reveal-delay="0.15">
@@ -264,7 +264,7 @@ import { contact, services, business } from '../data/site';
         const res = await fetch('/api/leads', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ ...data, source: 'remodeling-astro' }),
+          body: JSON.stringify({ ...data, source: 'talmage-astro' }),
         });
         const out = await res.json().catch(() => ({}));
         if (!res.ok || !out.ok) throw new Error(out.error || 'bad status');
@@ -277,7 +277,7 @@ import { contact, services, business } from '../data/site';
       }
 
       // mailto fallback
-      const subject = encodeURIComponent('Estimate request: ' + (data.project || 'Remodel'));
+      const subject = encodeURIComponent('Estimate request: ' + (data.project || 'Project'));
       const body = encodeURIComponent(
         `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email || 'not provided'}\nProject: ${data.project || 'not provided'}\n\n${data.message || ''}`,
       );

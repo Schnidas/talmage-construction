@@ -1,0 +1,189 @@
+---
+// Construction showcase — the new lead section. Photo-forward gallery of ground-up
+// builds and additions, on a dark ground so it reads as the headline of the site.
+import { builds } from '../data/site';
+const [lead, ...rest] = builds;
+---
+
+<section class="builds" id="builds">
+  <div class="container-x">
+    <header class="head">
+      <p class="eyebrow" data-reveal>Construction</p>
+      <h2 class="display-md" data-reveal data-reveal-delay="0.05">
+        From the ground up,<br /><span class="accent">we build it right.</span>
+      </h2>
+      <p class="sub" data-reveal data-reveal-delay="0.1">
+        New custom homes, additions, and ADUs across the Willamette Valley — engineered
+        to last and finished with the detail Talmage Construction is known for.
+      </p>
+    </header>
+
+    <div class="gallery">
+      <figure class="tile lead" data-reveal>
+        <img src={lead.img} alt={lead.alt} loading="lazy" />
+        <figcaption>
+          <span class="cat">{lead.category}</span>
+          <span class="title">{lead.title}</span>
+        </figcaption>
+      </figure>
+      {
+        rest.map((b, i) => (
+          <figure class="tile" data-reveal data-reveal-delay={(i % 3) * 0.05}>
+            <img src={b.img} alt={b.alt} loading="lazy" />
+            <figcaption>
+              <span class="cat">{b.category}</span>
+              <span class="title">{b.title}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="foot" data-reveal>
+      <a class="btn" href="#contact">
+        Plan your build
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+          ><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="note">Licensed &amp; insured general contractor · Salem, OR</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .builds {
+    background: var(--color-char);
+    color: var(--color-bone);
+    padding-block: clamp(5rem, 13vh, 10rem);
+  }
+  .head {
+    max-width: 48rem;
+    margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  }
+  .head .eyebrow {
+    color: var(--color-clay-on-dark);
+    margin-bottom: 1.25rem;
+  }
+  .head .accent {
+    color: var(--color-clay-on-dark);
+  }
+  .sub {
+    margin-top: 1.5rem;
+    color: color-mix(in srgb, var(--color-bone) 64%, var(--color-char));
+    max-width: 34rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  .tile {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--color-char-700);
+    box-shadow: 0 30px 60px -42px rgb(0 0 0 / 0.85);
+  }
+  .tile.lead {
+    aspect-ratio: 16 / 10;
+  }
+  .tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease-out-soft);
+  }
+  .tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(12 10 9 / 0.78) 0%, rgb(12 10 9 / 0.12) 42%, transparent 70%);
+    pointer-events: none;
+  }
+  .tile:hover img {
+    transform: scale(1.05);
+  }
+  figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.25rem 1.4rem;
+  }
+  .cat {
+    align-self: flex-start;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--color-clay) 88%, transparent);
+    color: var(--color-bone);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--color-bone);
+    text-shadow: 0 2px 18px rgb(0 0 0 / 0.5);
+  }
+
+  .foot {
+    margin-top: clamp(2.5rem, 6vh, 3.5rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 2rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--color-bone);
+    color: var(--color-ink);
+    text-decoration: none;
+    padding: 1rem 1.6rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    transition: background 0.25s, transform 0.25s, gap 0.25s, color 0.25s;
+  }
+  .btn:hover {
+    background: var(--color-clay);
+    color: var(--color-bone);
+    transform: translateY(-2px);
+    gap: 0.9rem;
+  }
+  .note {
+    margin: 0;
+    color: color-mix(in srgb, var(--color-bone) 58%, var(--color-char));
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 680px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .tile.lead {
+      grid-column: 1 / -1;
+      aspect-ratio: 21 / 9;
+    }
+  }
+  @media (min-width: 1024px) {
+    .gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .tile.lead {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+  }
+</style>
