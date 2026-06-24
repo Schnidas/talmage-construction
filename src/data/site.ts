@@ -67,15 +67,16 @@ export const services = [
   },
 ] as const;
 
-// Featured builds — the construction work that now leads the page. Placeholder
-// photos for now; swap in Joe Talmage's real ground-up project shots in /public/images.
+// Featured builds — the construction work that leads the page. Currently licensed
+// CC0 / public-domain construction stock as placeholders; swap in Joe Talmage's real
+// ground-up project photos in /public/images (build-1..6.jpg).
 export const builds = [
-  { category: 'New Construction', title: 'Custom Home · Redmond', img: '/images/build-4.jpg', alt: 'Great room of a newly built custom home with a clad fireplace' },
-  { category: 'Custom Home', title: 'Hillside Build · Salem', img: '/images/build-1.jpg', alt: 'Kitchen and living space in a newly constructed Talmage home' },
-  { category: 'Addition', title: 'Primary Suite Addition', img: '/images/build-2.jpg', alt: 'Spa-style primary bath built as a home addition' },
-  { category: 'Whole-Home Build', title: 'Great Room · Albany', img: '/images/build-5.jpg', alt: 'Open-concept great room with custom tile and built-ins' },
-  { category: 'New Construction', title: 'Family Home · Corvallis', img: '/images/build-3.jpg', alt: 'Detailed custom finishes in a new family home' },
-  { category: 'Custom Home', title: 'Modern Farmhouse', img: '/images/build-6.jpg', alt: 'Custom kitchen and dining in a modern farmhouse build' },
+  { category: 'New Construction', title: 'Custom Home · Redmond', img: '/images/build-4.jpg', alt: 'New custom homes framed and under construction' },
+  { category: 'Custom Home', title: 'Hillside Build · Salem', img: '/images/build-1.jpg', alt: 'Custom home exterior under construction against a clear sky' },
+  { category: 'Addition', title: 'Primary Suite Addition', img: '/images/build-2.jpg', alt: 'Crew framing a new room addition' },
+  { category: 'Whole-Home Build', title: 'Great Room · Albany', img: '/images/build-5.jpg', alt: 'Carpenter framing the structure of a whole-home build' },
+  { category: 'New Construction', title: 'Family Home · Corvallis', img: '/images/build-3.jpg', alt: 'Wood-framed new family home under construction' },
+  { category: 'Custom Home', title: 'Modern Farmhouse', img: '/images/build-6.jpg', alt: 'Interior framing of a custom home under construction' },
 ] as const;
 
 // Remodel before / after pairs — feed the secondary "Remodels" section. Placeholders
